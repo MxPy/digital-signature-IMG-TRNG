@@ -1,10 +1,10 @@
 import numpy as np
 import io
 import hashlib
-
+from Crypto import Random
 
 def get_random_bytes_from_IMG_TRNG(size: int, /) -> bytes:
-    
+    print(size)
     path = 'kitkuthechild.jpg'
 
     with open(path, 'rb') as f:
@@ -32,8 +32,14 @@ def get_random_bytes_from_IMG_TRNG(size: int, /) -> bytes:
             break
         
         
+    byteStream = byteStream[:size]
     # data = np.array(bytearray(byteStream))
-    # print(len(byteStream))
+    print(len(byteStream))
     return byteStream
-    
+
+def test(size: int, /) -> bytes:
+    print(size)
+    byts = Random.get_random_bytes(size)
+    print (len(byts))
+    return byts
 

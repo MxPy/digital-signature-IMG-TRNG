@@ -1,9 +1,9 @@
 from Crypto.PublicKey import RSA
-from Crypto import Random
+
 import imgTrng
 
 def generate_keypair(bits=2048):
-    print(len(Random.get_random_bytes(bits*2)))
+    #print(len(Random.get_random_bytes(bits*2)))
     print(len(imgTrng.get_random_bytes_from_IMG_TRNG(bits*2)))
     # print(Random.new().read)
     # random_generator = Random.new().read
