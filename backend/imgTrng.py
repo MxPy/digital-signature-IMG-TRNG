@@ -1,12 +1,11 @@
 import numpy as np
 import io
 import hashlib
-from Crypto import Random
 
 class TRNG:
     byteStream = b''
     def get_random_bytes_from_IMG_TRNG(self, size: int, /) -> bytes:
-        print(size)
+        #print(size)
         if len(self.byteStream)<size:
              
             path = 'kitkuthechild.jpg'
@@ -34,12 +33,5 @@ class TRNG:
         randomBytes = self.byteStream[:size]
         self.byteStream = self.byteStream[size:]
         # data = np.array(bytearray(byteStream))
-        print(len(randomBytes))
+        #print(len(randomBytes))
         return randomBytes
-
-    def test(self, size: int, /) -> bytes:
-        print(size)
-        byts = Random.get_random_bytes(size)
-        print (len(byts))
-        return byts
-
