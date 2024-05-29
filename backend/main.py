@@ -19,5 +19,5 @@ app.add_middleware(
 @app.get("/getKeys")
 async def read_root():
 	key = await generate_keypair()
-	return {"Public Key": key.publickey().exportKey(),
-		 	"Private Key": key.exportKey()}
+	return {"PublicKey": key.publickey().exportKey(),
+		 	"PrivateKey": key.exportKey()}
