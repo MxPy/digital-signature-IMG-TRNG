@@ -8,10 +8,15 @@ async function fetchKeys() {
 
 export default function Home() {
   const [keys, setKeys] = useState({ PublicKey: '', PrivateKey: '' });
+  const [loading, setLoading] = useState(false);
+  const [fetched, setFetched] = useState(false);
 
   const handleGetKeys = async () => {
+    setLoading(true);
     const fetchedKeys = await fetchKeys();
     setKeys(fetchedKeys);
+    setLoading(false);
+    setFetched(true);
   };
 
   return (
@@ -20,9 +25,14 @@ export default function Home() {
         <div className="hero-overlay bg-opacity-70"></div>
         <div className="hero-content text-center">
           <div className="max-w-2xl">
+            {!fetched && !loading && <h1>Click "Get Keys" to fetch keys</h1>}
+            {loading && <span className="loading loading-infinity loading-lg"></span>}
             <h1>{keys.PublicKey}</h1>
             <h1>{keys.PrivateKey}</h1>
             <button className="btn btn-wide btn-primary" onClick={handleGetKeys}>Get Keys</button>
+            <label className="form-control w-full max-w-xs">
+            <input type="file" className="my-2 file-input file-input-bordered w-full max-w-xs" />
+          </label>
           </div>
         </div>
       </div>

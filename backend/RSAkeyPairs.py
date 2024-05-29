@@ -21,6 +21,7 @@ def debug_generate_keypair(bits=2048):
     # print(Random.new().read)
     # random_generator = Random.new().read
     rsa_key = RSA.generate(bits,  randfunc=rng.get_random_bytes_from_IMG_TRNG, e=65537)
+    print (type(rsa_key.publickey().exportKey()))
     #print(repr(rsa_key))
     #print(repr(rsa_key.publickey()))
     return rsa_key
