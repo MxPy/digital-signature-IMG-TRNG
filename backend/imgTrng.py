@@ -7,7 +7,7 @@ class TRNG:
     byteStream = b''
     def get_random_bytes_from_IMG_TRNG(self, size: int, /) -> bytes:
         print(size)
-        if len(byteStream)<size:
+        if len(self.byteStream)<size:
              
             path = 'kitkuthechild.jpg'
 
@@ -29,10 +29,10 @@ class TRNG:
                 md5_hash = hashlib.md5()
                 md5_hash.update(block)
                 hash_hex = md5_hash.hexdigest()
-                byteStream+= bytes.fromhex(hash_hex)
+                self.byteStream+= bytes.fromhex(hash_hex)
             
-        randomBytes = byteStream[:size]
-        byteStream = byteStream[size:]
+        randomBytes = self.byteStream[:size]
+        self.byteStream = self.byteStream[size:]
         # data = np.array(bytearray(byteStream))
         print(len(randomBytes))
         return randomBytes
