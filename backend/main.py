@@ -1,6 +1,6 @@
 from fastapi import FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from RSAkeyPairs import generate_keypair
+from RSAkeyPairs import generate_keypair, get_signature
 
 
 app = FastAPI()
@@ -21,7 +21,9 @@ async def read_root():
 	key = await generate_keypair()
 	return {"PublicKey": key.publickey().exportKey(),
 		 	"PrivateKey": key.exportKey()}
-@app.get("/uploadFile")
+
+@app.post("/uploadFile")
 async def upload(file: UploadFile):
 	data = await file.read()
-	return {"file_content": data}
+	sign = await get_signature(data)
+	return sign
