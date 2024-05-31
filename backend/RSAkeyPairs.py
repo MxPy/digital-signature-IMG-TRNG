@@ -36,8 +36,12 @@ async def get_signature(file_content):
     h_obj = SHA3_256.new(file_content)
     signer = PKCS1_v1_5.new(key)
     signature =  signer.sign(h_obj)
-    return {"signature": binascii.hexlify(signature).decode('ascii'),
+    return {"signature": signature,
             "public_key": key.publickey().exportKey()}
+    
+async def verify_signature(file_content, signature, key):
+    return PKCS1_v1_5.new(RSA.import_key(key)).verify(SHA3_256.new(file_content), signature)
 
+    
 if __name__ == "__main__":
     debug_generate_keypair()
