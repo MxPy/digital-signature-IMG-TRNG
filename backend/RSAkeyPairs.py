@@ -37,7 +37,7 @@ async def get_signature(file_content):
     signer = PKCS1_v1_5.new(key)
     signature =  signer.sign(h_obj)
     return {"signature": binascii.hexlify(signature).decode('ascii'),
-            "publc_key": key.publickey().exportKey()}
+            "public_key": key.publickey().exportKey()}
 
 if __name__ == "__main__":
     debug_generate_keypair()
