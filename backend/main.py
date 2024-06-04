@@ -50,7 +50,7 @@ async def upload(file: UploadFile):
             "data": encoded_data
         },
         "file2": {
-            "filename": "YourPublicKey.txt",
+            "filename": "YourPublicKey.key",
             "content_type": "text/plain",
             "data": encoded_key
         },
